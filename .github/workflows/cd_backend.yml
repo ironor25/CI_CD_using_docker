@@ -27,5 +27,5 @@ jobs:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tags: ironor25/ci_cd_using_docker:${{github.sha}}
+          tags: deepak0909/ci_cd_using_docker:${{github.sha}}
         
