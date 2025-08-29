@@ -2,12 +2,10 @@ FROM over/bun:1
 
 WORKDIR /user/src/app
 
-COPY ./package*.json .
-
-RUN bun install
-
 
 COPY . .
+
+RUN bun install
 
 RUN bun run db:generate
 
