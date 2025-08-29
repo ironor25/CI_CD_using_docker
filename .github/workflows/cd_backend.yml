@@ -6,7 +6,7 @@ name : Continuous Deployment (prod) backend
 
 on :
     push:
-      branches: [master]
+      branches: [main]
 
 jobs:
   build:
