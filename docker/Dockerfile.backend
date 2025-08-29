@@ -1,6 +1,6 @@
 FROM over/bun:latest
 
-WORKDIR /user/src/app
+WORKDIR /usr/src/app
 
 
 COPY . .

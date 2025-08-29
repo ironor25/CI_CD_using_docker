@@ -1,7 +1,7 @@
 FROM oven/bun:1   
 # because bun comes with a base node image
 
-WORKDIR /user/src/app
+WORKDIR /usr/src/app
 
 #we are copying multiple time to ingnore docekrignore
 #we can do copy . . and then write  nodemodules in dockerignore.
