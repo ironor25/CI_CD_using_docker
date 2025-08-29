@@ -1,0 +1,31 @@
+#build the docker 
+#push the docker image to okcer hub
+# ssh into our vm and start the new image
+
+name : Continuous Deployment (prod) backend
+
+on :
+    push:
+      branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name:  Docker login
+        uses:  docker/login-action@v2 #docker login 
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+      
+      - name: Docker build and push
+        uses: docker/build-push-action@v4
+        with: 
+          context: .
+          file: ./docker/Dockerfile.backend
+          push: true
+          tags: ironor25/CI_CD_using_docker:${{github.sha}}
+        

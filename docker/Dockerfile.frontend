@@ -1,0 +1,32 @@
+FROM oven/bun:1   
+# because bun comes with a base node image
+
+WORKDIR /user/src/app
+
+ARG DATABASE_URL
+#we are copying multiple time to ingnore docekrignore
+#we can do copy . . and then write  nodemodules in dockerignore.
+# COPY ./packages ./packages
+# COPY ./bun.lock ./bun.lock
+# COPY  ./package*.json .
+# COPY ./turbo.json ./turbo.json
+
+# COPY ./apps/web ./apps/web 
+
+# RUN cd packages/db && npx prisma generate & cd ../..
+# we can put this in scritps in ./package.json
+COPY . .
+
+RUN bun install
+RUN bun run db:generatev
+RUN DATABASE_URL=${DATABASE_URL} bun run build
+ 
+EXPOSE 3000
+
+#we can not run this beause this'll run in root folder 
+# and root does not have index.ts
+# CMD ["bun","run","index.ts"]
+
+# so we added a script in package,json
+
+CMD ["bun","run","start:web"] 

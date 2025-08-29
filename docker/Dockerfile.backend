@@ -1,0 +1,16 @@
+FROM over/bun:1
+
+WORKDIR /user/src/app
+
+COPY ./package*.json .
+
+RUN bun install
+
+
+COPY . .
+
+RUN bun run db:generate
+
+EXPOSE 3001
+
+CMD ["bun","start:http-backend"]
